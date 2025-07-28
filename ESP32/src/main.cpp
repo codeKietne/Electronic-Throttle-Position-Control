@@ -5,7 +5,7 @@ float Kp = 1, Ki = 0.3, Kd = 3;
 const float Sampling_time = 20.0;
 const float inv_Sampling_time = 1000.0 / Sampling_time;
 // ADC & PWM
-#define SENSOR_PIN  34      
+#define SENSOR_POSITION_PIN  34      
 #define PWM_PIN     18      
 #define PWM_CH      0
 #define PWM_FREQ    50  
@@ -73,10 +73,11 @@ void setup() {
 }
 
 void loop() {
-  if (flag_pid) {
+  if (flag_pid) 
+  {
     flag_pid = false;
 
-    int adc_val = analogRead(SENSOR_PIN);
+    int adc_val = analogRead(SENSOR_POSITION_PIN);
     measured_pos = ((float)(adc_val - MIN_ANALOG_READ) / (MAX_ANALOG_READ - MIN_ANALOG_READ)) * 100.0;
     if (measured_pos < 0) measured_pos = 0;
 
